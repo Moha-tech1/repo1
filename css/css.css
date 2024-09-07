@@ -1,0 +1,319 @@
+:root {
+  --main-color: #021526;
+  --txt_color:#E2E2B6;
+  --txt2-color:#6EACDA;
+  --transparent-color: rgb(15 116 143 / 70%);
+  --section-padding: 100px;
+  --headings-font: "Playwrite CU", cursive;
+  --txt-font:"Caveat", cursive;
+}
+/* End Variables */
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: myfont, "Open Sans", sans-serif;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* End Global Rules */
+
+div.go_to_up {
+  display: block;
+  position: fixed;
+  width: fit-content;
+  border-radius: 20px;
+  right: 5%;
+  bottom: 5%;
+  background-color: var(--main-color);
+  z-index: 999;
+  text-align: center;
+}
+div.go_to_up a {
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  padding: 20px;
+}
+/* Start header */
+header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url(../images/fresh-foods_AdobeStock_LEAD.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+header div.nav {
+  background-color: var(--main-color);
+}
+header div.nav div.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header div.nav div.container div.panner {
+  position: relative;
+}
+header div.nav div.container div.panner pre {
+  font-family: var(--headings-font);
+  font-size: 50px;
+  transform: translateY(25px);
+  color: var(--txt_color);
+}
+header div.nav div.container nav ul {
+  display: flex;
+}
+header div.nav div.container nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: var(--txt_color);
+  margin: 20px;
+  padding: 10px;
+  font-size: 45px;
+  white-space:nowrap;
+  border-radius: 20px;
+  transition: all 0.3s;
+  font-family: var(--txt-font);
+}
+header div.nav div.container nav ul li a:hover {
+  transform: translateY(-20px);
+  background-color: #03346E;
+}
+header div.content1 {
+  flex-grow: 1;
+  position: relative;
+}
+header div.content1 div.overlay {
+  background-color: #02152697;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+header div.content1 div.words {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  top:30%;
+  transform: translatex(-50%);
+  color: var(--txt2-color);
+  text-align: center;
+  background-color: #6eabda52;
+  border-radius: 30px;
+  padding: 20px;
+  max-height: 330px;
+  overflow: hidden;
+  
+}
+header div.content1 div.words h1 {
+  font-family: var(--headings-font);
+  margin: 30px;
+  color: var(--txt_color);
+}
+header div.content1 div.words p {
+  font-family: var(--txt-font);
+  font-size: 30px;
+}
+div.content1 div.booking {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 60%;
+  left: 50%;
+  transform: translatex(-50%);
+}
+div.content1 div.booking a {
+  display: block;
+  color: var(--txt_color);
+  text-decoration: none;
+  background-color: var(--main-color);
+  padding: 20px;
+  font-family: var(--txt-font);
+  border-radius: 50px;
+  font-size: 80px;
+  transition: all 0.2s;
+}
+div.content1 div.booking a:hover {
+  background-color: #03346E;
+}
+div.content1 div.booking i:nth-child(3) {
+  font-size: 50px;
+  color: var(--txt2-color);
+  animation: moving1 0.5s infinite alternate;
+} 
+div.content1 div.booking i:nth-child(1) {
+  font-size: 50px;
+  color: var(--txt2-color);
+  animation: moving2 0.5s infinite alternate;
+} 
+@keyframes moving1 {
+  from {transform: translateX(30px);}
+  to {transform: translateX(10px);}
+}
+@keyframes moving2 {
+  from {transform: translateX(-30px);}
+  to {transform: translateX(-10px);}
+}
+
+/* test */
+main h2 {
+  margin:0px auto 30px;
+  width: fit-content;
+  padding: 20px;
+  color: var(--txt2-color);
+  font-family: var(--headings-font);
+  font-size: 70px;
+}
+main {
+  background-color: var(--main-color);
+  padding: 30px 0 200px;
+}
+main div.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); 
+  gap: 30px;
+}
+main div.container div.dish1{
+  width: 300px;
+  /* height: 200px; */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 1s;
+  margin: auto;
+}
+main div.container div.dish1:hover {
+  transform: rotateY(180deg);
+}
+div.fish1 {
+  width: 300px;
+  /* height: 200px; */
+  background-color: #03346E;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  font-family: "Zain", sans-serif ;
+  box-shadow: 0px 0px 25px 6px;
+  backface-visibility: hidden;
+}
+div.fish1 img {
+  width: 100%;
+  border-radius: 15px;
+
+}
+div.discribtion1 {
+  background-color: #03346E;
+  /* height: 200px; */
+  width: 300px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  font-family: "Zain", sans-serif ;
+  box-shadow: 0px 0px 25px 6px;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+main p {
+  font-family: var(--txt-font);
+  font-size: 30px;
+}
+/* نهاية المنيو */
+/* <!-- Start of the history --> */
+section#history {
+  min-height: 100vh;
+  background-color: var(--txt_color);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+section#history p:first-child ,
+section#history p:last-child  {
+  flex-basis: 70%;
+  padding: 30px;
+  color: #03346E;
+  font-family: var(--txt-font);
+  font-size: 20px;
+}
+section#history p:first-child span {
+  font-size: 50px;
+}
+section#history div {
+  flex-basis: 30%;
+}
+section#history div img {
+  width: 100%;
+  border-radius: 50px;
+  border: 10px solid var(--txt2-color);
+}
+/* <!-- End of the menu --> */
+
+/* <!-- Start of the footer --> */
+footer {
+  background-color: var(--main-color);
+  padding: 20px;
+}
+footer div.container {
+  display: flex;
+  justify-content: space-between;
+}
+footer div.container div.social i {
+  font-size: 30px;
+  margin: 20px;
+  transition: all 0.2s;
+}
+footer div.container div.social i:first-child:hover {
+  color: blue;
+}
+footer div.container div.social i:nth-child(2):hover {
+  color: orangered;
+}
+footer div.container div.social i:nth-child(5):hover {
+  color: yellow;
+}
+footer div.container div.copyright pre {
+  font-family: var(--headings-font);
+  color: var(--txt_color);
+  font-size: 30px;
+  text-align: center;
+  border:2px solid var(--txt_color) ;
+  border-radius: 70%;
+  padding: 35px;
+  line-height: 60px;
+}
+/* <!-- End of the footer --> */

@@ -1,0 +1,117 @@
+:root {
+  --main-color: #021526;
+  --txt_color: #e2e2b6;
+  --txt2-color: #6eacda;
+  --transparent-color: rgb(15 116 143 / 70%);
+  --section-padding: 100px;
+  --headings-font: "Playwrite CU", cursive;
+  --txt-font: "Caveat", cursive;
+}
+/* End Variables */
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: myfont, "Open Sans", sans-serif;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* End Global Rules */
+
+body {
+  background-image: url("../images/dish4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+div.overlay {
+  background-color: #02152697;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--txt2-color);
+    padding: 50px;
+    border-radius: 50px;
+    border: 5px solid var(--main-color);
+    box-shadow: 1px 5px 10px 3px var(--main-color) ;
+}
+legend {
+    margin: auto;
+    margin-bottom: 50px;
+    font-family: var(--headings-font);
+    color: var(--txt_color);
+    font-size: 50px;
+}
+input#txt , input#date {
+    display: block;
+}
+form div {
+    margin: 20px 0;
+    font-family: var(--txt-font);
+    font-size: 50px;
+    color: #03346E;
+}
+input[type="submit"] {
+    display: block;
+    padding: 10px;
+    transform: skew(-10deg);
+    background-color: #021526;
+    color: var(--txt_color);
+    border-radius: 10px;
+    font-family: var(--txt-font);
+    font-size: 50px;
+    margin: auto;
+}
+#only1 {
+    font-family: var(--headings-font);
+    color: var(--txt_color);
+    background-color: #0215269d;
+    border-radius: 20px;
+    padding: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+    text-align: center;
+    line-height: 200px;
+}
