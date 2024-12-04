@@ -1,9 +1,11 @@
+// *! if the user press any key (not 1 or 2) the program should loop again
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <conio.h>
 #include <stdlib.h>
-#include "proccess2.c"
+#include "process2.c"
 
 void main(void)
 {
@@ -21,7 +23,7 @@ void main(void)
         printf("################### Welcome... We are here to serve You ###################\n");
         printf("###########################################################################\n");
         printf("####### 1-Sign in:\n");
-        printf("####### 2-Sign up:\n>>>");
+        printf("####### 2-Sign up:\n>>> ");
         scanf(" %c", &option);
         // printf("%d", option);
 
@@ -47,31 +49,29 @@ void main(void)
             break;
         }
 
-        printf("####################### Welcome < %s >... #######################");
-        printf("#################### What do you think today ####################");
-        printf("##### 1 - Show Profile ##########################################");
-        printf("##### 2 - Manage account ########################################");
-        printf("##### 3 - Search for a doctor ###################################");
-        printf("##### 4 - Book an appointment ###################################\n##### >>>");
-        scanf(" %c", &option);
-        getchar();
-        switch (option)
+        while (true)
         {
-        case '1':
-            // showProfile();
-            break;
-        case '2':
-            /* code */
-            break;
-        case '3':
-            /* code */
-            break;
-        case '4':
-            /* code */
-            break;
+            greeting();
+            scanf(" %c", &option);
+            getchar();
+            switch (option)
+            {
+            case '1':
+                showProfile();
+                break;
+            case '2':
+                manageAccount();
+                break;
+            case '3':
+                searchDoctor();
+                break;
+            case '4':
+                /* ... */
+                break;
 
-        default:
-            break;
+            default:
+                break;
+            }
         }
     }
 }
