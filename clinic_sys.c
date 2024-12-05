@@ -1,4 +1,4 @@
-// *! if the user press any key (not 1 or 2) the program should loop again
+// *! if the user press any key (not (1 or 2)) the program should loop again
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -17,18 +17,19 @@ void main(void)
     char option;
     while (true)
     {
-        printf("###########################################################################\n");
+        printf("##############################################################################\n");
         system("cls"); // to clear window
-        printf("###########################################################################\n");
-        printf("################### Welcome... We are here to serve You ###################\n");
-        printf("###########################################################################\n");
-        printf("####### 1-Sign in:\n");
-        printf("####### 2-Sign up:\n>>> ");
+        printf("##############################################################################\n");
+        printf("##################### SmartCare Clinic  Management System ####################\n");
+        printf("##############################################################################\n");
+        printf("##################### Welcome... We are here to serve You ####################\n");
+        printf("##############################################################################\n");
+        printf("######## 1-Sign in: ##########################################################\n");
+        printf("######## 2-Sign up: ##########################################################\n");
+        printf("##############################################################################\n>>> ");
         scanf(" %c", &option);
+        clear_buffer();
         // printf("%d", option);
-
-        //*? clear the \n that results from scanf()
-        getchar(); // printf("%d",getchar());
 
         system("cls"); // to clear window
 
@@ -49,6 +50,7 @@ void main(void)
             break;
         }
 
+        // *! sign_out();
         while (true)
         {
             greeting();
@@ -66,7 +68,7 @@ void main(void)
                 searchDoctor();
                 break;
             case '4':
-                /* ... */
+                sign_out();
                 break;
 
             default:
