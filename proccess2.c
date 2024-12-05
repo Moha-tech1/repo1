@@ -3,6 +3,12 @@
 #include <conio.h>
 #include <stdbool.h>
 
+void clear_buffer(void)
+{
+    while (getchar() != '\n')
+        ; // Keep reading until a newline character is encountered
+}
+
 #define NumberOfDoctors 10
 
 typedef struct doctors_data
@@ -42,7 +48,7 @@ void showDrData(void)
 {
     for (int i = 0; i < 10; i++)
     {
-        printf("ID:%-3dName:%-23sSpecialty:%-24sAddress:%-32sFees:%d$\n", member[i].id, member[i].name, member[i].Specialty, member[i].Address, member[i].Visita);
+        printf("ID:%-3dName:%-23sSpecialty:%-24sAddress:%-13sFees:%d$\n", member[i].id, member[i].name, member[i].Specialty, member[i].Address, member[i].Visita);
     }
 }
 
@@ -175,9 +181,11 @@ void sign_in(void)
     char tempUser[30];
     char tempPass[20];
     bool check = false; // (true -> valid) (false -> invalid)
-    printf("###############################################\n");
-    printf("###############################################\n");
-    printf("############### Welcome back ##################\n");
+    printf("##############################################################################\n");
+    printf("##############################################################################\n");
+    printf("################################ Welcome back ################################\n");
+    printf("##############################################################################\n");
+    printf("##############################################################################\n");
 
     for (int tries = 4; tries > 0; tries--)
     {
@@ -251,39 +259,70 @@ void sign_up(void)
     char temp_name[30];
     char temp_username[30];
     char temp_password[20];
-    printf("##### Kindly... fill the following information #####\n");
+    printf("################## Kindly... fill the following information ##################\n");
     printf("##### Your name: ");
-    scanf("%29[^\n]", temp_name);
+    while (true)
+    {
 
-    getchar();
+        scanf("%29[^\n]", temp_name);
+        getchar();
+        char *pos_name = strpbrk(temp_name, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        if (pos_name == NULL)
+        {
+            // printf("%s", pos);
+            printf("Invalid Name!\nTry again: ");
+            continue;
+        }
+        else
+            break;
+    }
 
-    printf("##### Create Username: ");
+    printf("\n##### Create Username: ");
     bool check = false;
     for (int i = 0; i < NumberOfPatients; i++)
     {
         check = false;
         scanf("%29[^\n]", temp_username);
         getchar();
+        char *pos_user = strpbrk(temp_username, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
         for (size_t i = 0; i < NumberOfPatients; i++)
         {
             if (strcmp(temp_username, p_member[i].username) == 0)
                 check = true;
         }
+        //
+        if (pos_user == NULL)
+        {
+            // printf("%s", pos);
+            printf("Invalid Username!\nTry again: ");
+            continue;
+        }
+        //
         if (check == true)
             printf("This username has been used already :(\ntry again\n##### Create Username: ");
         else
             break;
     }
 
-    printf("##### Create Password:\nMake sure that password sould be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
+    // *! Don't let password accept spaces or tabs
+    printf("\n##### Create Password:\nMake sure that password sould be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
     for (int i = 0; i < NumberOfPatients; i++)
     {
         scanf("%15[^\n]", temp_password);
         getchar();
+        char *pos_pass = strpbrk(temp_password, " \t");
         if (strlen(temp_password) < 8 || strlen(temp_password) > 15)
         {
             printf("Invalid Password :(\nTry again: ");
         }
+        //
+
+        else if (pos_pass != NULL)
+        {
+            // printf("%s", pos);
+            printf("Tha password can't contain space or tab!\nTry again: ");
+        }
+        //
         else
             break;
     }
@@ -331,7 +370,7 @@ void greeting(void)
     printf("###### 1 - Show Profile        ###############################################\n");
     printf("###### 2 - Manage account      ###############################################\n");
     printf("###### 3 - Search for a doctor ###############################################\n");
-    printf("###### 4 - Book an appointment ###############################################\n");
+    printf("###### 4 - Sign out            ###############################################\n");
     printf("##############################################################################\n##### >>> ");
 }
 
@@ -376,8 +415,22 @@ void manageAccount(void)
             char tempName[30];
             getchar();
             printf("\nWrite the new name: ");
-            scanf("%29[^\n]", tempName);
-            getchar(); // تنظيف الإدخال المتبقي
+
+            while (true)
+            {
+                scanf("%29[^\n]", tempName);
+                getchar(); // تنظيف الإدخال المتبقي
+                char *pos_name = strpbrk(tempName, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                if (pos_name == NULL)
+                {
+                    // printf("%s", pos);
+                    printf("Invalid Name!\nTry again: ");
+                    continue;
+                }
+                else
+                    break;
+            }
+
             strcpy(p_member[currentIndex].name, tempName);
             printf("Done :)\n");
 
@@ -389,14 +442,29 @@ void manageAccount(void)
             system("cls"); // to clear window
             break;
         }
+
         /* edit username */
         else if (option == '2')
         {
             char tempUsername[30];
             getchar();
             printf("\nWrite the new username: ");
-            scanf("%29[^\n]", tempUsername);
-            getchar(); // تنظيف الإدخال المتبقي
+            // scanf("%29[^\n]", tempUsername);
+            // getchar(); // تنظيف الإدخال المتبقي
+            while (true)
+            {
+                scanf("%29[^\n]", tempUsername);
+                getchar(); // تنظيف الإدخال المتبقي
+                char *pos_name = strpbrk(tempUsername, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                if (pos_name == NULL)
+                {
+                    // printf("%s", pos);
+                    printf("Invalid Userame!\nTry again: ");
+                    continue;
+                }
+                else
+                    break;
+            }
             strcpy(p_member[currentIndex].username, tempUsername);
             printf("Done :)\n");
 
@@ -411,11 +479,33 @@ void manageAccount(void)
         /* edit password */
         else if (option == '3')
         {
+            // *! add the two restriction
             char tempPass[30];
             getchar();
             printf("\nAssign a new Password: ");
-            scanf("%29[^\n]", tempPass);
-            getchar(); // تنظيف الإدخال المتبقي
+            // scanf("%29[^\n]", tempPass);
+            // getchar(); // تنظيف الإدخال المتبقي
+            while (true)
+            {
+                scanf("%15[^\n]", tempPass);
+                getchar();
+                char *pos_pass = strpbrk(tempPass, " \t");
+                if (strlen(tempPass) < 8 || strlen(tempPass) > 15)
+                {
+                    printf("Invalid Password :(\nTry again: ");
+                }
+                //
+
+                else if (pos_pass != NULL)
+                {
+                    // printf("%s", pos);
+                    printf("Tha password can't contain space or tab!\nTry again: ");
+                }
+                //
+                else
+                    break;
+            }
+
             strcpy(p_member[currentIndex].password, tempPass);
             printf("Done :)\n");
 
@@ -430,7 +520,30 @@ void manageAccount(void)
         }
         else if (option == '4')
         {
-            /* code */
+            int x = count_file_lines();
+            FILE *file;
+            file = fopen("patients.txt", "w");
+            if (file == NULL)
+            {
+                printf("error in openning file!");
+                return;
+            }
+            char header[30];
+            fputs("ID,name,username,password\n", file);
+
+            for (int i = 0; i < x - 1; i++)
+            {
+                if (i == currentIndex)
+                    continue;
+                else if (i != x - 2)
+                    fprintf(file, "%d,%s,%s,%s\n", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                else
+                    fprintf(file, "%d,%s,%s,%s", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+            }
+            fclose(file);
+            printf("\nYour account have been deleted.");
+            _sleep(4000);
+            exit(0);
             break;
         }
         else
@@ -516,4 +629,14 @@ void searchDoctor(void)
         getchar();
         system("cls");
     }
+}
+
+void sign_out(void)
+{
+    system("cls");
+    printf("##############################################################################\n");
+    printf("##################### We are pleased to have served you ######################\n");
+    printf("#################### We look forward to your next visit! #####################\n");
+    printf("##############################################################################\n");
+    exit(0);
 }
