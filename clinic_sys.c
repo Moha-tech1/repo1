@@ -56,7 +56,7 @@ void main(void)
         {
             greeting();
             scanf(" %c", &option);
-            getchar();
+            clear_buffer();
             switch (option)
             {
             case '1':
