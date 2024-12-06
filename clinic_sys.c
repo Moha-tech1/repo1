@@ -1,23 +1,23 @@
-// *! if the user press any key (not (1 or 2)) the program should loop again
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <conio.h>
 #include <stdlib.h>
-#include "process2.c"
+#include "proccess3.c"
 
-// Comment from kimoooooooooooooooo
 void main(void)
 {
     retrieveDrData();
     // showDrData();
     retrievePatientsData();
     // showPatientsData();
+    // exit(0);
 
     char option;
+    bool cheack = false;
     while (true)
     {
+
         printf("##############################################################################\n");
         system("cls"); // to clear window
         printf("##############################################################################\n");
@@ -25,33 +25,43 @@ void main(void)
         printf("##############################################################################\n");
         printf("##################### Welcome... We are here to serve You ####################\n");
         printf("##############################################################################\n");
-        printf("######## 1-Sign in: ##########################################################\n");
-        printf("######## 2-Sign up: ##########################################################\n");
+        printf("######## 1 - Sign in:      ###################################################\n");
+        printf("######## 2 - Sign up:      ###################################################\n");
+        printf("######## 3 - exit program: ###################################################\n");
         printf("##############################################################################\n>>> ");
-        scanf(" %c", &option);
-        clear_buffer();
-        // printf("%d", option);
-
-        system("cls"); // to clear window
-
-        switch (option)
+        while (true)
         {
-        case '1':
+            scanf(" %c", &option);
+            clear_buffer();
+            // printf("%d", option);
 
-            sign_in();
-            break;
+            system("cls"); // to clear window
 
-        case '2':
-            sign_up();
-            break;
+            switch (option)
+            {
+            case '1':
 
-        default:
-            printf("Wrong input\nTry again later :(");
-            exit(0);
-            break;
+                sign_in();
+                cheack = true;
+                break;
+
+            case '2':
+                sign_up();
+                cheack = true;
+                break;
+            
+            case '3':
+                exit(0);
+                break;
+
+            default:
+                printf("Wrong input!\nTry again: ");
+                break;
+            }
+            if (cheack == true)
+                break;
         }
 
-        // *! sign_out();
         while (true)
         {
             greeting();
