@@ -1,9 +1,11 @@
+// *! if the user press any key (not (1 or 2)) the program should loop again
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <conio.h>
 #include <stdlib.h>
-#include "proccess2.c"
+#include "process2.c"
 
 // Comment from kimoooooooooooooooo
 void main(void)
@@ -16,18 +18,19 @@ void main(void)
     char option;
     while (true)
     {
-        printf("###########################################################################\n");
+        printf("##############################################################################\n");
         system("cls"); // to clear window
-        printf("###########################################################################\n");
-        printf("################### Welcome... We are here to serve You ###################\n");
-        printf("###########################################################################\n");
-        printf("####### 1-Sign in:\n");
-        printf("####### 2-Sign up:\n>>>");
+        printf("##############################################################################\n");
+        printf("##################### SmartCare Clinic  Management System ####################\n");
+        printf("##############################################################################\n");
+        printf("##################### Welcome... We are here to serve You ####################\n");
+        printf("##############################################################################\n");
+        printf("######## 1-Sign in: ##########################################################\n");
+        printf("######## 2-Sign up: ##########################################################\n");
+        printf("##############################################################################\n>>> ");
         scanf(" %c", &option);
+        clear_buffer();
         // printf("%d", option);
-
-        //*? clear the \n that results from scanf()
-        getchar(); // printf("%d",getchar());
 
         system("cls"); // to clear window
 
@@ -48,31 +51,30 @@ void main(void)
             break;
         }
 
-        printf("####################### Welcome < %s >... #######################");
-        printf("#################### What do you think today ####################");
-        printf("##### 1 - Show Profile ##########################################");
-        printf("##### 2 - Manage account ########################################");
-        printf("##### 3 - Search for a doctor ###################################");
-        printf("##### 4 - Book an appointment ###################################\n##### >>>");
-        scanf(" %c", &option);
-        getchar();
-        switch (option)
+        // *! sign_out();
+        while (true)
         {
-        case '1':
-            // showProfile();
-            break;
-        case '2':
-            /* code */
-            break;
-        case '3':
-            /* code */
-            break;
-        case '4':
-            /* code */
-            break;
+            greeting();
+            scanf(" %c", &option);
+            getchar();
+            switch (option)
+            {
+            case '1':
+                showProfile();
+                break;
+            case '2':
+                manageAccount();
+                break;
+            case '3':
+                searchDoctor();
+                break;
+            case '4':
+                sign_out();
+                break;
 
-        default:
-            break;
+            default:
+                break;
+            }
         }
     }
 }
