@@ -3,20 +3,24 @@
 #include <conio.h>
 #include <stdbool.h>
 
-int validate_password_input(char arr[]) {
+int validate_password_input(char arr[])
+{
     /*
      * Function to validate the password user input.
-     * Set of valid characters = {Uppercase letters, Lowercase letters, _ , numbers}
+     * Set of valid characters = {Uppercase letters, Lowercase letters, _ , \t}
      * Returns 1 if valid
      * Returns 0 if not valid
      */
     bool valid = true;
-    for (int i = 0; arr[i] != '\0'; i++) {
+    for (int i = 0; arr[i] != '\0'; i++)
+    {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t')
+        { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
             continue;
         }
-        else {
+        else
+        {
             valid = false; // Name not valid
             break;
         }
@@ -24,20 +28,24 @@ int validate_password_input(char arr[]) {
     return valid;
 }
 
-int validate_input(char arr[]) {
+int validate_input(char arr[])
+{
     /*
      * Function to validate the user input.
-     * Set of valid characters = {Uppercase letters, Lowercase letters, space, _ , \t}
+     * Set of valid characters = {Uppercase letters, Lowercase letters, space, _ }
      * Returns 1 if valid
      * Returns 0 if not valid
      */
     bool valid = true;
-    for (int i = 0; arr[i] != '\0'; i++) {
+    for (int i = 0; arr[i] != '\0'; i++)
+    {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == 95)
+        { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
             continue;
         }
-        else {
+        else
+        {
             valid = false; // Name not valid
             break;
         }
@@ -290,15 +298,16 @@ void sign_in(void)
             break;
         if (tries == 1)
         {
-        char choise;
-        printf("\nSadly You cannot sign in for now.\nDo you want to:\n1 - sign up\n2 - exit\n>>>");
-        scanf("%c",&choise);
-        clear_buffer();
-        if (choise == '1')
-            sign_up();
-        else if (choise == '2') 
-            exit(0);
-        else exit(0);
+            char choise;
+            printf("\nSadly You cannot sign in for now.\nDo you want to:\n1 - sign up\n2 - exit\n>>>");
+            scanf("%c", &choise);
+            clear_buffer();
+            if (choise == '1')
+                sign_up();
+            else if (choise == '2')
+                exit(0);
+            else
+                exit(0);
         }
 
         printf("\nInvalid username or password. You have %d tries left.\n", tries - 1);
@@ -326,9 +335,9 @@ void sign_up(void)
         {
             // printf("%s", pos);
             printf("Invalid Name!\nTry again: ");
-
         }
-        else {
+        else
+        {
             break;
         }
     }
@@ -362,7 +371,7 @@ void sign_up(void)
 
     // *! Don't let password accept spaces or tabs
     printf("\n##### Create Password:\nMake sure that password should be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
-    while(true)
+    while (true)
     {
         scanf("%30[^\n]", temp_password);
         getchar();
@@ -412,7 +421,7 @@ void sign_up(void)
     else
     {
         retrievePatientsData();
-        //showPatientsData();
+        // showPatientsData();
         sign_in();
     }
 }
@@ -587,15 +596,27 @@ void manageAccount(void)
             char header[30];
             fputs("ID,name,username,password\n", file);
 
-
-            for (int i = 0; i < x - 1; i++)
+            if (currentIndex == x - 2)
             {
-                if (i == currentIndex)
-                    continue;
-                else if (i != x - 2)
-                    fprintf(file, "%d,%s,%s,%s\n", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
-                else
-                    fprintf(file, "%d,%s,%s,%s", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                for (int i = 0; i < x - 2; i++)
+                {
+                    if (i != x - 3)
+                        fprintf(file, "%d,%s,%s,%s\n", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                    else
+                        fprintf(file, "%d,%s,%s,%s", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < x - 1; i++)
+                {
+                    if (i == currentIndex)
+                        continue;
+                    else if (i != x - 2)
+                        fprintf(file, "%d,%s,%s,%s\n", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                    else
+                        fprintf(file, "%d,%s,%s,%s", i + 1, p_member[i].name, p_member[i].username, p_member[i].password);
+                }
             }
             fclose(file);
             printf("\nYour account have been deleted.");
