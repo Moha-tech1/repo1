@@ -1,11 +1,11 @@
-ID,Name,Specialty,Clinic Address,Visit Fee
-001,Dr. Sarah Johnson,Dermatology,123 Skin Care St Springfield IL,120
-002,Dr. James Mitchell,Orthopedics,45 Bone Road Chicago IL,150
-003,Dr. Emily Brown,Pediatrics,200 Kids Blvd Rivertown TX,100
-004,Dr. Michael Smith,Cardiology,78 Heart Ave Dallas TX,200
-005,Dr. Robert Lee,Neurology,66 Brain Dr Austin TX,180
-006,Dr. Lisa White,General Surgery,54 Healing Path Orlando FL,220
-007,Dr. William Clark,Internal Medicine,88 Wellness Rd New York NY,160
-008,Dr. Olivia Harris,Obstetrics/Gynecology,25 Family Way Seattle WA,170
-009,Dr. Alexander Walker,Psychiatry,99 Mind St Los Angeles CA,130
-010,Dr. Jessica Lewis,Endocrinology,102 Metabolic Ave Denver CO,180
+ID|Name|Specialty|Clinic Address|Visit Fee
+1|Dr. Alice Johnson|Cardiologist|123 Heart Lane, New York, NY|250.00
+2|Dr. Benjamin Lee|Dermatologist|456 Skin Ave, Los Angeles, CA|180.50
+3|Dr. Catherine Smith|Pediatrician|789 Kids Blvd, Chicago, IL|200.00
+4|Dr. Daniel Harris|Cardiologist|321 Joint St, Houston, TX|300.75
+5|Dr. Emily Davis|Dermatologist|654 Brain Way, Miami, FL|350.00
+6|Dr. Frank Thomas|Pediatrician|987 Vision Rd, Boston, MA|220.25
+7|Dr. Grace Lee|Cardiologist|159 Health Ave, Seattle, WA|150.00
+8|Dr. Henry Brown|Dermatologist|753 Ear Nose Throat Blvd, Denver, CO|210.50
+9|Dr. Isabella Wilson|Pediatrician|852 Women's Care Dr, San Francisco, CA|280.00
+10|Dr. John Carter|Cardiologist|951 Mind Wellness Ln, Austin, TX|400.00
