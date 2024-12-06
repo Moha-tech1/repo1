@@ -238,7 +238,7 @@ void sign_in(void)
     {
         printf("\n###### Username: ");
         scanf("%29[^\n]", tempUser);
-        getchar(); // تنظيف الإدخال المتبقي
+        clear_buffer();
 
         // إدخال كلمة المرور مع دعم Backspace
         char ch;
@@ -328,7 +328,7 @@ void sign_up(void)
     {
 
         scanf("%29[^\n]", temp_name);
-        getchar();
+        clear_buffer();
         // char *pos_name = strpbrk(temp_name, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
         if (validate_input(temp_name) == false)
@@ -348,7 +348,7 @@ void sign_up(void)
     {
         check = false;
         scanf("%29[^\n]", temp_username);
-        getchar();
+        clear_buffer();
         // char *pos_user = strpbrk(temp_username, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
         if (validate_input(temp_username) == false)
         {
@@ -374,7 +374,7 @@ void sign_up(void)
     while (true)
     {
         scanf("%30[^\n]", temp_password);
-        getchar();
+        clear_buffer();
         // char *pos_pass = strpbrk(temp_password, " \t");
         if (strlen(temp_password) < 8 || strlen(temp_password) > 15)
         {
@@ -452,7 +452,7 @@ void showProfile(void)
     printf(">Be careful! You can't share your information with anyone\n");
     printf("#########################################################\n");
     printf("Press (any key) to get back to home page...\n");
-    getchar();
+    /*getchar();*/getch();
     system("cls");
 }
 
@@ -473,18 +473,19 @@ void manageAccount(void)
         printf("##### >>> ");
         char option;
         option = getchar();
+        clear_buffer();
 
         /* edit name */
         if (option == '1')
         {
             char tempName[30];
-            getchar();
+
             printf("\nWrite the new name: ");
 
             while (true)
             {
                 scanf("%29[^\n]", tempName);
-                getchar(); // تنظيف الإدخال المتبقي
+                clear_buffer(); // تنظيف الإدخال المتبقي
 
                 if (validate_input(tempName) == false)
                 {
@@ -512,14 +513,12 @@ void manageAccount(void)
         else if (option == '2')
         {
             char tempUsername[30];
-            getchar();
+
             printf("\nWrite the new username: ");
-            // scanf("%29[^\n]", tempUsername);
-            // getchar(); // تنظيف الإدخال المتبقي
             while (true)
             {
                 scanf("%29[^\n]", tempUsername);
-                getchar(); // تنظيف الإدخال المتبقي
+                clear_buffer(); // تنظيف الإدخال المتبقي
                 // char *pos_name = strpbrk(tempUsername, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
                 if (validate_input(tempUsername) == false)
                 {
@@ -546,14 +545,14 @@ void manageAccount(void)
         {
             // *! add the two restriction
             char tempPass[30];
-            getchar();
+            
             printf("\nAssign a new Password: ");
             // scanf("%29[^\n]", tempPass);
             // getchar(); // تنظيف الإدخال المتبقي
             while (true)
             {
                 scanf("%30[^\n]", tempPass);
-                getchar();
+                clear_buffer();
                 // char *pos_pass = strpbrk(tempPass, " \t");
                 if (strlen(tempPass) < 8 || strlen(tempPass) > 15)
                 {
@@ -645,19 +644,20 @@ void searchDoctor(void)
     printf("##############################################################################\n##### >>> ");
     char option;
     option = getchar();
+    clear_buffer();
 
     // searsh by specility
     if (option == '1')
     {
         system("cls");
-        getchar();
+        
         printf("##############################################################################\n");
         printf("#### You can write the specialty (or any part of specialty) of the doctor ####\n");
         printf("##############################################################################\n");
         printf("\nSearch: ");
         char search[30];
         scanf("%29[^\n]", search);
-        getchar(); // تنظيف الإدخال المتبقي
+        clear_buffer(); // تنظيف الإدخال المتبقي
         for (int i = 0; i < NumberOfDoctors; i++)
         {
             if (strstr(member[i].Specialty, search) != NULL)
@@ -666,7 +666,7 @@ void searchDoctor(void)
             }
         }
         printf("Press (any key) to get back to home page...\n");
-        getchar();
+        /*getchar();*/getch();
         system("cls");
     }
 
@@ -674,14 +674,14 @@ void searchDoctor(void)
     if (option == '2')
     {
         system("cls");
-        getchar();
+
         printf("##############################################################################\n");
         printf("######## You can write the name (or any part of name) of the doctor ##########\n");
         printf("##############################################################################\n");
         printf("\nSearch: ");
         char search[30];
         scanf("%29[^\n]", search);
-        getchar(); // تنظيف الإدخال المتبقي
+        clear_buffer(); // تنظيف الإدخال المتبقي
         for (int i = 0; i < NumberOfDoctors; i++)
         {
             if (strstr(member[i].name, search) != NULL)
@@ -690,7 +690,7 @@ void searchDoctor(void)
             }
         }
         printf("Press (any key) to get back to home page...\n");
-        getchar();
+        /*getchar();*/getch();
         system("cls");
     }
 
@@ -703,8 +703,7 @@ void searchDoctor(void)
         printf("##############################################################################\n");
         showDrData();
         printf("Press (any key) to get back to home page...\n");
-        getchar();
-        getchar();
+        getch();
         system("cls");
     }
 }
