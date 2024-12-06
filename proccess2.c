@@ -321,10 +321,10 @@ void sign_up(void)
     }
 
     // *! Don't let password accept spaces or tabs
-    printf("\n##### Create Password:\nMake sure that password sould be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
+    printf("\n##### Create Password:\nMake sure that password should be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
     while(true)
     {
-        scanf("%15[^\n]", temp_password);
+        scanf("%30[^\n]", temp_password);
         getchar();
         char *pos_pass = strpbrk(temp_password, " \t");
         if (strlen(temp_password) < 8 || strlen(temp_password) > 15)
@@ -349,7 +349,7 @@ void sign_up(void)
         printf("error in openning file!");
         return;
     }
-    fprintf(file, "\n%d,%s,%s,%s", 0, temp_name, temp_username, temp_password);
+    fprintf(file, "\n%d,%s,%s,%s", count_file_lines(), temp_name, temp_username, temp_password);
     fclose(file);
 
     system("cls"); // to clear window
@@ -372,7 +372,7 @@ void sign_up(void)
     else
     {
         retrievePatientsData();
-        showPatientsData();
+        //showPatientsData();
         sign_in();
     }
 }
