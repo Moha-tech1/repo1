@@ -15,7 +15,7 @@ int validate_password_input(char arr[])
     for (int i = 0; arr[i] != '\0'; i++)
     {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t')
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_')
         { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
             continue;
         }
@@ -40,9 +40,15 @@ int validate_input(char arr[])
     for (int i = 0; arr[i] != '\0'; i++)
     {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == 95)
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == 95 || arr[i] == 32)
         { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
-            continue;
+            char *pos = strpbrk(arr, "0123456789abcdefghijklmnopqrstuvwxyz_");
+            if (pos == NULL)
+            {
+                valid = false; // Name not valid
+                break;
+            }
+            else continue;
         }
         else
         {
@@ -319,6 +325,7 @@ void sign_up(void)
     if (count_file_lines() == 11)
     {
         printf("### The system can't hold more than 10 patients :( ###");
+        _sleep(4000);
         exit(0);
     }
     char temp_name[30];
@@ -470,9 +477,9 @@ void manageAccount(void)
         printf("##############################################################################\n");
         printf("########################## What do you want to do? ###########################\n");
         printf("##############################################################################\n");
-        printf("######## 1 - Edit Name #######################################################\n");
-        printf("######## 2 - Edit Username ###################################################\n");
-        printf("######## 3 - Change Password #################################################\n");
+        printf("######## 1 - Edit Name         ###############################################\n");
+        printf("######## 2 - Edit Username     ###############################################\n");
+        printf("######## 3 - Change Password   ###############################################\n");
         printf("######## 4 - Delete my Account ###############################################\n");
         printf("##############################################################################\n");
         printf("##### >>> ");
