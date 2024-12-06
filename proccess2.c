@@ -16,8 +16,8 @@ typedef struct doctors_data
     int id;
     char name[30];
     char Specialty[25];
-    char Address[40];
-    int Visita;
+    char Address[45];
+    float Visita;
 } doctors;
 doctors member[10];
 
@@ -39,7 +39,7 @@ void retrieveDrData(void)
     fgets(header, 50, file);
     for (int i = 0; i < 30; i++)
     {
-        fscanf(file, "%d,%29[^,],%24[^,],%39[^,],%d\n", &member[i].id, member[i].name, member[i].Specialty, member[i].Address, &member[i].Visita);
+        fscanf(file, "%d|%29[^|]|%24[^|]|%42[^|]|%f\n", &member[i].id, member[i].name, member[i].Specialty, member[i].Address, &member[i].Visita);
     }
     fclose(file);
 }
@@ -48,23 +48,23 @@ void showDrData(void)
 {
     for (int i = 0; i < 10; i++)
     {
-        printf("ID:%-3dName:%-23sSpecialty:%-24sAddress:%-13sFees:%d$\n", member[i].id, member[i].name, member[i].Specialty, member[i].Address, member[i].Visita);
+        printf("ID:%-3dName:%-23sSpecialty:%-20sAddress:%-40sFees:%0.2f$\n", member[i].id, member[i].name, member[i].Specialty, member[i].Address, member[i].Visita);
     }
 }
 
-void appendToDrData(void)
-{
-    FILE *file;
-    file = fopen("doctors.csv", "a");
-    if (file == NULL)
-    {
-        printf("error in openning file!");
-        return;
-    }
-    // fprintf(file,"%d,%29[^,],%24[^,],%39[^,],%d\n",021,"Dr moha","Programming","Alex",500);
-    fprintf(file, "%d,%s,%s,%s,%d\n", 21, "Dr moha", "Programming", "Alex", 500);
-    fclose(file);
-}
+// void appendToDrData(void)
+// {
+//     FILE *file;
+//     file = fopen("doctors.csv", "a");
+//     if (file == NULL)
+//     {
+//         printf("error in openning file!");
+//         return;
+//     }
+//     // fprintf(file,"%d,%29[^,],%24[^,],%39[^,],%d\n",021,"Dr moha","Programming","Alex",500);
+//     fprintf(file, "%d,%s,%s,%s,%d\n", 21, "Dr moha", "Programming", "Alex", 500);
+//     fclose(file);
+// }
 
 //*!###############################################################################################################
 //*!                 patints data & function
@@ -84,6 +84,8 @@ typedef struct patients_data
     char password[20];
 } patients;
 patients p_member[NumberOfPatients];
+
+void sign_up(void);
 
 int count_file_lines(void)
 {
@@ -249,6 +251,18 @@ void sign_in(void)
 
         if (check)
             break;
+        if (tries == 1)
+        {
+        char choise;
+        printf("\nSadly You cannot sign in for now.\nDo you want to:\n1 - sign up\n2 - exit\n>>>");
+        scanf("%c",&choise);
+        clear_buffer();
+        if (choise == '1')
+            sign_up();
+        else if (choise == '2') 
+            exit(0);
+        else exit(0);
+        }
 
         printf("\nInvalid username or password. You have %d tries left.\n", tries - 1);
     }
@@ -259,7 +273,9 @@ void sign_up(void)
     char temp_name[30];
     char temp_username[30];
     char temp_password[20];
+    printf("##############################################################################\n");
     printf("################## Kindly... fill the following information ##################\n");
+    printf("##############################################################################\n");
     printf("##### Your name: ");
     while (true)
     {
@@ -279,7 +295,7 @@ void sign_up(void)
 
     printf("\n##### Create Username: ");
     bool check = false;
-    for (int i = 0; i < NumberOfPatients; i++)
+    while (true)
     {
         check = false;
         scanf("%29[^\n]", temp_username);
@@ -306,7 +322,7 @@ void sign_up(void)
 
     // *! Don't let password accept spaces or tabs
     printf("\n##### Create Password:\nMake sure that password sould be 8 to 15 characters!\nMake sure that password must not contain spaces\n>>> ");
-    for (int i = 0; i < NumberOfPatients; i++)
+    while(true)
     {
         scanf("%15[^\n]", temp_password);
         getchar();
@@ -364,7 +380,7 @@ void sign_up(void)
 void greeting(void)
 {
     printf("##############################################################################\n");
-    printf("###################### Welcome >>> %-20s ######################\n", currentName);
+    printf("###################### Welcome >>> %-20s ######################\n", p_member[currentIndex].name);
     printf("########################## What do you think today ###########################\n");
     printf("##############################################################################\n");
     printf("###### 1 - Show Profile        ###############################################\n");
@@ -530,6 +546,7 @@ void manageAccount(void)
             }
             char header[30];
             fputs("ID,name,username,password\n", file);
+
 
             for (int i = 0; i < x - 1; i++)
             {
