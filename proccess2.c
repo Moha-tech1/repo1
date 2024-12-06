@@ -316,6 +316,11 @@ void sign_in(void)
 
 void sign_up(void)
 {
+    if (count_file_lines() == 11)
+    {
+        printf("### The system can't hold more than 10 patients :( ###");
+        exit(0);
+    }
     char temp_name[30];
     char temp_username[30];
     char temp_password[20];
@@ -452,7 +457,7 @@ void showProfile(void)
     printf(">Be careful! You can't share your information with anyone\n");
     printf("#########################################################\n");
     printf("Press (any key) to get back to home page...\n");
-    /*getchar();*/getch();
+    /*getchar();*/ getch();
     system("cls");
 }
 
@@ -545,7 +550,7 @@ void manageAccount(void)
         {
             // *! add the two restriction
             char tempPass[30];
-            
+
             printf("\nAssign a new Password: ");
             // scanf("%29[^\n]", tempPass);
             // getchar(); // تنظيف الإدخال المتبقي
@@ -650,7 +655,7 @@ void searchDoctor(void)
     if (option == '1')
     {
         system("cls");
-        
+
         printf("##############################################################################\n");
         printf("#### You can write the specialty (or any part of specialty) of the doctor ####\n");
         printf("##############################################################################\n");
@@ -666,7 +671,7 @@ void searchDoctor(void)
             }
         }
         printf("Press (any key) to get back to home page...\n");
-        /*getchar();*/getch();
+        /*getchar();*/ getch();
         system("cls");
     }
 
@@ -690,7 +695,7 @@ void searchDoctor(void)
             }
         }
         printf("Press (any key) to get back to home page...\n");
-        /*getchar();*/getch();
+        /*getchar();*/ getch();
         system("cls");
     }
 
