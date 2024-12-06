@@ -3,6 +3,48 @@
 #include <conio.h>
 #include <stdbool.h>
 
+int validate_password_input(char arr[]) {
+    /*
+     * Function to validate the password user input.
+     * Set of valid characters = {Uppercase letters, Lowercase letters, _ , \t}
+     * Returns 1 if valid
+     * Returns 0 if not valid
+     */
+    bool valid = true;
+    for (int i = 0; arr[i] != '\0'; i++) {
+        valid = true;
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+            continue;
+        }
+        else {
+            valid = false; // Name not valid
+            break;
+        }
+    }
+    return valid;
+}
+
+int validate_input(char arr[]) {
+    /*
+     * Function to validate the user input.
+     * Set of valid characters = {Uppercase letters, Lowercase letters, space, _ }
+     * Returns 1 if valid
+     * Returns 0 if not valid
+     */
+    bool valid = true;
+    for (int i = 0; arr[i] != '\0'; i++) {
+        valid = true;
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == 95) { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+            continue;
+        }
+        else {
+            valid = false; // Name not valid
+            break;
+        }
+    }
+    return valid;
+}
+
 void clear_buffer(void)
 {
     while (getchar() != '\n')
@@ -10,6 +52,7 @@ void clear_buffer(void)
 }
 
 #define NumberOfDoctors 10
+#define NumberOfPatients 10
 
 typedef struct doctors_data
 {
@@ -31,10 +74,6 @@ void retrieveDrData(void)
         return;
     }
     char header[50];
-    /* records=0
-    read=0
-    read=fscanf(file, "%d,%29[^,],%24[^,],%39[^,],%d\n", &member[i].id
-    , member[i].name, member[i].Specialty, member[i].Address, &member[i].Visita);*/
 
     fgets(header, 50, file);
     for (int i = 0; i < 30; i++)
@@ -68,8 +107,6 @@ void showDrData(void)
 
 //*!###############################################################################################################
 //*!                 patints data & function
-
-#define NumberOfPatients 10
 
 char currentName[30];
 char currentUsername[30];
@@ -277,20 +314,23 @@ void sign_up(void)
     printf("################## Kindly... fill the following information ##################\n");
     printf("##############################################################################\n");
     printf("##### Your name: ");
+
     while (true)
     {
 
         scanf("%29[^\n]", temp_name);
         getchar();
-        char *pos_name = strpbrk(temp_name, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        if (pos_name == NULL)
+        // char *pos_name = strpbrk(temp_name, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+        if (validate_input(temp_name) == false)
         {
             // printf("%s", pos);
             printf("Invalid Name!\nTry again: ");
-            continue;
+
         }
-        else
+        else {
             break;
+        }
     }
 
     printf("\n##### Create Username: ");
@@ -300,19 +340,19 @@ void sign_up(void)
         check = false;
         scanf("%29[^\n]", temp_username);
         getchar();
-        char *pos_user = strpbrk(temp_username, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        for (size_t i = 0; i < NumberOfPatients; i++)
-        {
-            if (strcmp(temp_username, p_member[i].username) == 0)
-                check = true;
-        }
-        //
-        if (pos_user == NULL)
+        // char *pos_user = strpbrk(temp_username, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        if (validate_input(temp_username) == false)
         {
             // printf("%s", pos);
             printf("Invalid Username!\nTry again: ");
             continue;
         }
+        for (int i = 0; i < NumberOfPatients; i++)
+        {
+            if (strcmp(temp_username, p_member[i].username) == 0)
+                check = true;
+        }
+
         //
         if (check == true)
             printf("This username has been used already :(\ntry again\n##### Create Username: ");
@@ -326,17 +366,17 @@ void sign_up(void)
     {
         scanf("%30[^\n]", temp_password);
         getchar();
-        char *pos_pass = strpbrk(temp_password, " \t");
+        // char *pos_pass = strpbrk(temp_password, " \t");
         if (strlen(temp_password) < 8 || strlen(temp_password) > 15)
         {
             printf("Invalid Password :(\nTry again: ");
         }
         //
 
-        else if (pos_pass != NULL)
+        else if (validate_password_input(temp_password) == false)
         {
             // printf("%s", pos);
-            printf("Tha password can't contain space or tab!\nTry again: ");
+            printf("The password can't contain space or tab or any special characters(except _)!\nTry again: ");
         }
         //
         else
@@ -436,8 +476,8 @@ void manageAccount(void)
             {
                 scanf("%29[^\n]", tempName);
                 getchar(); // تنظيف الإدخال المتبقي
-                char *pos_name = strpbrk(tempName, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                if (pos_name == NULL)
+
+                if (validate_input(tempName) == false)
                 {
                     // printf("%s", pos);
                     printf("Invalid Name!\nTry again: ");
@@ -471,8 +511,8 @@ void manageAccount(void)
             {
                 scanf("%29[^\n]", tempUsername);
                 getchar(); // تنظيف الإدخال المتبقي
-                char *pos_name = strpbrk(tempUsername, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                if (pos_name == NULL)
+                // char *pos_name = strpbrk(tempUsername, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                if (validate_input(tempUsername) == false)
                 {
                     // printf("%s", pos);
                     printf("Invalid Userame!\nTry again: ");
@@ -503,19 +543,19 @@ void manageAccount(void)
             // getchar(); // تنظيف الإدخال المتبقي
             while (true)
             {
-                scanf("%15[^\n]", tempPass);
+                scanf("%30[^\n]", tempPass);
                 getchar();
-                char *pos_pass = strpbrk(tempPass, " \t");
+                // char *pos_pass = strpbrk(tempPass, " \t");
                 if (strlen(tempPass) < 8 || strlen(tempPass) > 15)
                 {
                     printf("Invalid Password :(\nTry again: ");
                 }
                 //
 
-                else if (pos_pass != NULL)
+                else if (validate_password_input(tempPass) == false)
                 {
                     // printf("%s", pos);
-                    printf("Tha password can't contain space or tab!\nTry again: ");
+                    printf("The password can't contain space or tab or any special characters(except _)!\nTry again: ");
                 }
                 //
                 else
