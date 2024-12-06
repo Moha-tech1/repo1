@@ -6,14 +6,14 @@
 int validate_password_input(char arr[]) {
     /*
      * Function to validate the password user input.
-     * Set of valid characters = {Uppercase letters, Lowercase letters, _ , \t}
+     * Set of valid characters = {Uppercase letters, Lowercase letters, _ , numbers}
      * Returns 1 if valid
      * Returns 0 if not valid
      */
     bool valid = true;
     for (int i = 0; arr[i] != '\0'; i++) {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
             continue;
         }
         else {
@@ -27,14 +27,14 @@ int validate_password_input(char arr[]) {
 int validate_input(char arr[]) {
     /*
      * Function to validate the user input.
-     * Set of valid characters = {Uppercase letters, Lowercase letters, space, _ }
+     * Set of valid characters = {Uppercase letters, Lowercase letters, space, _ , \t}
      * Returns 1 if valid
      * Returns 0 if not valid
      */
     bool valid = true;
     for (int i = 0; arr[i] != '\0'; i++) {
         valid = true;
-        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == 95) { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
+        if ((arr[i] >= 65 && arr[i] <= 90) || (arr[i] >= 97 && arr[i] <= 122) || arr[i] == 32 || (arr[i] >= 48 && arr[i] <= 57) || arr[i] == '_' || arr[i] == '\t') { // Makes sure that the name only contains either a space or lowercase letters or uppercase letters
             continue;
         }
         else {
